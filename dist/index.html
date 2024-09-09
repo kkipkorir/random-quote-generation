@@ -1,0 +1,91 @@
+<!DOCTYPE html>
+<html lang="en" >
+<head>
+  <meta charset="UTF-8">
+  <title>Random quote generator</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1"><link rel="stylesheet" href="./style.css">
+
+</head>
+<body>
+<!-- partial:index.partial.html -->
+<div>
+<div id="quote-box">
+  <div class="content-box">
+  <div id="text"></div>
+  <div id="author"></div>
+  </div>
+  <div class="container">
+    <button href="https://twitter.com/intent/tweet" id="tweet-quote">Tweet</button>
+    <button id="new-quote">new-quote</button>
+   </div>
+</div>
+  <div id="web-author">
+  <p>by kkipkorir<p/>
+</div>
+  </div>
+ <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.7.1/jquery.min.js"></script>
+  <script>
+    $('document').ready(function(){
+      let quoteArr;
+      //loads the quote
+       function loadQuotes (theQuote){
+        $('#text').text(theQuote.quote);
+        $('#author').text(`-${theQuote.author}`)
+         updateTweetButton(theQuote.quote,theQuote.author);
+         updateColor();
+      };
+      
+      //gets a random quote
+       function getRandomQuote(arr){
+         return arr[Math.floor(Math.random()*arr.length)];
+       }
+      
+      $.ajax({
+        url:'https://dummyjson.com/quotes',
+        success:function(data){
+        console.log(data) ;
+          quoteArr = data.quotes
+       loadQuotes(getRandomQuote(quoteArr));
+          
+     },
+      error:function(jqXHR,textStatus,errorThrown){
+        $('#text').text(`An error occured`);
+        console.log(jqXHR.responseText);
+        console.log("status:" +textStatus);
+         console.log("HTTP error:" +errorThrown);
+      }  
+      });
+      $('#new-quote').click(()=>{
+        loadQuotes(getRandomQuote(quoteArr));
+      });
+      
+      function updateTweetButton(quote,author){
+        const tweetText = encodeURIComponent(`${quote} -${author}`)
+        const tweetURI  = `https://twitter.com/intent/tweet?text=${tweetText}`;
+        $('#tweet-quote').attr('href',tweetURI);
+      }
+      
+      function updateColor(){
+        const colors = [
+    "#FF5733", // Red
+    "#33FF57", // Green
+    "#3357FF", // Blue
+    "#FF33A1", // Pink
+    "#FFC300", // Yellow
+    "#DAF7A6", // Light Green
+    "#900C3F", // Dark Red
+    "#581845"  // Purple
+  ];
+        const randomColorIndex = Math.floor(Math.random() * colors.length);
+        
+        $('body').css('background-color', colors[randomColorIndex]);
+        $('#text').css('color',colors[randomColorIndex]);
+        $('#author').css('color',colors[randomColorIndex]);
+        $('button').css('background-color',colors[randomColorIndex]);
+      }
+    })
+  </script>
+<!-- partial -->
+  <script src='https://cdnjs.cloudflare.com/ajax/libs/jquery/3.7.1/jquery.min.js'></script>
+</body>
+</html>

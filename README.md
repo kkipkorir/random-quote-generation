@@ -1,2 +1,4 @@
-# random-quote-generation
-Done as part of free code camps front-end frameworks curriculum
+# Random quote generator
+
+A Pen created on CodePen.io. Original URL: [https://codepen.io/kkipkorir/pen/poXqVpp](https://codepen.io/kkipkorir/pen/poXqVpp).
+

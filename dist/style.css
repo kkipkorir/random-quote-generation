@@ -1,0 +1,43 @@
+* {
+  transition: background-color 1s ease;
+}
+
+body {
+  font-family: system-ui;
+  background: #f06d06;
+  color: white;
+  text-align: center;
+  display: flex;
+  justify-content: center;
+}
+
+#quote-box {
+  max-width: 500px;
+  height: fit-content;
+  border-radius: 5px;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  flex-wrap: wrap;
+  flex-direction: column;
+  background-color: #ffffff;
+  color: #f06d06;
+  padding: 8px;
+}
+#quote-box .content-box {
+  margin: 8px 16px;
+}
+#quote-box .content-box #author {
+  text-align: end;
+}
+
+.container {
+  display: flex;
+  width: 100%;
+  justify-content: space-between;
+}
+.container button {
+  background-color: #f06d06;
+  color: white;
+  border: solid 1px #f06d06;
+}
